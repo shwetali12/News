@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+    
+    <div class="row mt-5 mb-5">
+        <div class="col-md-12">
+            <img  src="/static/{{ data.image }}" height="500" width=100%>
+            <div class="mt-5">
+                <h2 class="text-danger fw-bold">{{ data.title }}</h5>
+                <p>{{ data.content }}</p>
+                <small>{{ data.publish_date}}</small>,
+                <small class="text-success">{{ data.source }}</small>
+            </div>
+            <div class="row">
+                <div class="col-md-4 py-2">
+                    <a href="https://www.facebook.com/your_username/" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-facebook" style="font-size: 2em; color: black;"></i>
+                    </a>
+                </div>
+                <div class="col-md-4 py-2">
+                    <a href="https://www.instagram.com/your_username/" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-instagram" style="font-size: 2em; color: black;"></i>
+                    </a>
+                </div>
+                <div class="col-md-4 py-2">
+                    <a href="https://www.twitter.com/your_username/" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-twitter" style="font-size: 2em; color: black;"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <form method="post" action="">
+                    {% csrf_token %}
+                    {{ comment_form.as_p }}
+                    <button class="btn btn-dark" value="submit">submit</button>
+            </form>
+            <hr>
+            <div class="my-4 mt-5">
+            
+                    <h5 class="text-primary">Comments</h5>
+                    {% for comment in comments %}
+                    <h3>{{comment.content}}</h3>
+                    
+                    <small>{{ comment.created_at }}</small>
+                    <hr>
+                    {% endfor %}
+             </div>
+            </div>
+            
+        </div>
+       
+    
+    </div>
+</div>
+{% endblock %}

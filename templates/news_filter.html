@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container col-xxl-8 px-4 py-5">
+    
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+        <h1 class="my-4"> All News</h1>
+        <form method="GET" class="my-3">
+            <input type="text" name="q" placeholder="Search news">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+      <hr>
+      {% for news in news %}
+        <div class="col-10 col-sm-8 col-lg-6">
+          
+            <h6 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">
+                <a href="{% url 'details' news.id %}" class="text-dark"style=text-decoration:none; >{{ news.title}}</a>
+            </h6>
+        </div>      
+        <div class="col-10 col-sm-8 col-lg-6">
+            <img  src="/static/{{ news.image }}" width="200" height="150" >
+
+        </div>
+        {% empty %}
+          <h3>Not Found!</h3>
+          
+          <hr>
+      {% endfor %}
+    </div>
+</div>
+{% endblock %}
